@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 import { useState } from "react";
-import { MessageCircle, Heart, Info, X } from "lucide-react";
+import { MessageCircle, Heart, Info, X } from "lucide-react"; // Pastikan Anda memiliki ikon yang sesuai
 
 export default function Clotes({ product, onAddToCart }) {
     const [likedProducts, setLikedProducts] = useState({});
@@ -10,7 +10,7 @@ export default function Clotes({ product, onAddToCart }) {
     const [showCommentPopup, setShowCommentPopup] = useState(false);
     const [comment, setComment] = useState("");
     const [submittedComment, setSubmittedComment] = useState(null);
-    const [showAddToCartPopup, setShowAddToCartPopup] = useState(null); // State for add to cart popup
+    const [showAddToCartPopup, setShowAddToCartPopup] = useState(null);
 
     const toggleLike = (item) => {
         setLikedProducts((prev) => {
@@ -39,7 +39,7 @@ export default function Clotes({ product, onAddToCart }) {
     const handleAddToCart = (item) => {
         onAddToCart(item);
         setShowAddToCartPopup(`Produk ${item.name} berhasil ditambahkan ke keranjang!`);
-        setTimeout(() => setShowAddToCartPopup(null), 3000); // Hide popup after 3 seconds
+        setTimeout(() => setShowAddToCartPopup(null), 3000);
     };
 
     return (
@@ -66,8 +66,9 @@ export default function Clotes({ product, onAddToCart }) {
                                 />
                                 <Heart
                                     onClick={() => toggleLike(item)}
-                                    className={`cursor-pointer transition-colors duration-200 transform hover:scale-110 ${likedProducts[item.id] ? "text-red-500" : ""
-                                        }`}
+                                    className={`cursor-pointer transition-colors duration-200 transform hover:scale-110 ${likedProducts[item.id] ? "text-red-500" : "text-gray-500"}`}
+                                    fill={likedProducts[item.id] ? "red" : "none"} // Set fill color
+                                    stroke={likedProducts[item.id] ? "red" : "currentColor"} // Set stroke color
                                 />
                                 <MessageCircle
                                     onClick={() => setShowCommentPopup(true)}
@@ -77,7 +78,7 @@ export default function Clotes({ product, onAddToCart }) {
 
                             <button
                                 className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300"
-                                onClick={() => handleAddToCart(item)} // Call handleAddToCart
+                                onClick={() => handleAddToCart(item)}
                             >
                                 Add to Cart
                             </button>
